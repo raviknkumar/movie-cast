@@ -1,0 +1,23 @@
+:root{
+    --chat-background-color: #3C3CA1
+}
+
+.text-black {
+    color: black;
+}
+
+.header{
+    background-color: var(--chat-background-color);
+}
+
+.body{
+    flex:8;
+}
+
+.inbox{
+    transition: all 1s;
+}
+
+.h-threeFour{
+    height: 75%;
+}

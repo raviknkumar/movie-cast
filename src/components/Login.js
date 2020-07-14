@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {randomString} from "../utils/CommonUtils";
-import {loginConstants} from "../utils/Constants";
 import { useHistory } from "react-router-dom";
-import {createConnection} from "../global/header";
+import auth from "./../utils/Auth"
 
 const Login = (props) => {
 
@@ -17,23 +16,24 @@ const Login = (props) => {
     function joinRoom(e) {
         e.preventDefault();
         console.log("Joining:");
-        console.log(username);
-        console.log(joiningUserRoom);
-
-        localStorage.setItem(loginConstants.username, username);
-        localStorage.setItem(loginConstants.room, joiningUserRoom);
-        history.push("/");
+        
+        auth.login(() => {
+            props.history.push({
+                pathname:"/home",
+                search: `?username=${username}&room=${joiningUserRoom}`
+            });
+        });
     }
 
     function createRoom(e) {
         e.preventDefault();
         console.log("Creating:");
-        console.log(username);
-        console.log(room);
-
-        localStorage.setItem(loginConstants.username, username);
-        localStorage.setItem(loginConstants.room, room);
-        history.push("/");
+        auth.login(() => {
+            props.history.push({
+                pathname:"/home",
+                search: `?username=${username}&room=${room}`
+            });
+        });
     }
 
     return (
@@ -46,9 +46,7 @@ const Login = (props) => {
 
                 <TabPanel>
                     <div className="w-full max-w-xs items-center mt-2">
-
-                        <form className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4" action={"/"}>
-
+                        <form className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4" action={"/home"}>
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                                     Username
@@ -68,15 +66,15 @@ const Login = (props) => {
                                     name="room"
                                     value={room}
                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="room" type="text" placeholder="room" readonly/>
+                                    id="room" type="text" placeholder="room" readOnly/>
                             </div>
 
                             <div className="flex items-center justify-between">
-                                <button
+                                <button onClick={createRoom}
                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     type="submit">
                                     Create Room
-                                </button>
+                                </button>    
                             </div>
                         </form>
                         <p className="text-center text-gray-500 text-xs">
@@ -89,7 +87,7 @@ const Login = (props) => {
                 <TabPanel>
 
                     <div className="w-full max-w-xs items-center mt-2">
-                        <form className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4" action={"/"}>
+                        <form className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
@@ -116,6 +114,7 @@ const Login = (props) => {
 
                             <div className="flex items-center justify-between">
                                 <button
+                                    onClick={joinRoom}
                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     type="submit">
                                     Join Room

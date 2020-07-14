@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import {Header} from "./global/header";
 import {Route, Switch} from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import AppLayout from "./components/common/AppLayout";
 
 /*The <Route> component is the main part of React Router. Anywhere that you want to only render content based on the location’s pathname, you should use a <Route> element. */
 
@@ -15,8 +16,10 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/movie" component={Login} />
+          <Route exact path="/" component={Login} />
+          <ProtectedRoute exact path="/home" component={Home} />
+          <ProtectedRoute exact path="/app" component={AppLayout} />
+          <Route path="*" component={() => "404 NOT FOUND"} />
         </Switch>
       </div>
     );

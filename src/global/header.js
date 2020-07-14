@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import socketIOClient from "socket.io-client";
 import './header.css'
 import {NavLink, withRouter} from "react-router-dom";
-import {getRoom, getUserName} from "../utils/CommonUtils";
 import auth from "../utils/Auth"
 import Qs from 'qs';
+import {movieCastUrl} from "../../api/request";
 
 // The Header creates links that can be used to navigate
 // between routes.
@@ -16,7 +16,7 @@ class HeaderComponent extends Component {
     constructor() {
         super();
         this.state = {
-            endpoint: 'http://localhost:3001/'
+            endpoint: movieCastUrl()
         };
         console.log("Trying to connect to server");
 
@@ -41,14 +41,14 @@ class HeaderComponent extends Component {
                             <NavLink to="/">Login</NavLink>
                         </li>
 
-                        <button className="float-right" 
+                        <button className="float-right"
                             onClick={() => {
                                 auth.logout(() => {
                                     this.props.history.push("/");
                                 }, socket);
                             }}>
                             Logout
-                        </button>                       
+                        </button>
                     </ul>
                 </nav>
             </header>

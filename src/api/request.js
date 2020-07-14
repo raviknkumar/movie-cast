@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {ipConfig} from './ipConfig'
 
-const movieCastUrl = () => {
+export const movieCastUrl = () => {
     return ipConfig.ip.movieCast.qa;
 }
 

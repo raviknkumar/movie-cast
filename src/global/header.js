@@ -4,7 +4,7 @@ import './header.css'
 import {NavLink, withRouter} from "react-router-dom";
 import auth from "../utils/Auth"
 import Qs from 'qs';
-import {movieCastUrl} from "../../api/request";
+import {movieCastUrl} from "./../api/request";
 
 // The Header creates links that can be used to navigate
 // between routes.

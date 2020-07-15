@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1123695-69b6-45be-bf95-db752e8fc3e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/close-white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/smile.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/contexts/AuthContext.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chat/ChatBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/ChatBox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chat/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/Message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Avatar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Avatar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/global/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/global/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/ChatBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/ChatBox.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/Messages.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Messages.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />

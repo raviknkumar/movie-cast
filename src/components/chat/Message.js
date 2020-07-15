@@ -36,7 +36,7 @@ const ToMessage = ({message}) => {
               background={'bg-indigo-400'}
       />
         <div className={"flex flex-col ml-1"}>
-          <span className="toMessage inline-block rounded-full rounded-tl-none p-2 pl-3 pl-3 bg-gray-200">{message.message}</span>
+          <span className="toMessage inline-block rounded-full rounded-tl-none p-2 pl-3 pl-3 bg-gray-300">{message.message}</span>
           <span className={"inline-block text-gray-500 text-xs"}>{message.timestamp}</span>
         </div>
     </div>

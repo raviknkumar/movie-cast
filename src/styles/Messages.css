@@ -1,7 +1,33 @@
-  .messagesWrapper {
+.messagesWrapper {
     display: flex;
     flex-direction: column;
     overflow: scroll;
     margin-top: 1rem;
-  }
-  
+}
+
+.fromMessage {
+    border-radius: 20px 20px 0 20px;
+    -webkit-font-smoothing: antialiased;
+    background: #3375b3;
+    color: white;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+    display: inline-block;
+    transform: none;
+    -webkit-animation: fadeIn 500ms;
+    -moz-animation: fadeIn 500ms;
+    animation: fadeIn 500ms;
+}
+
+.toMessage{
+    -webkit-font-smoothing: antialiased;
+    background: #f1f1f1;
+    color: black;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+    display: inline-block;
+    transform: none;
+    -webkit-animation: fadeIn 500ms;
+    -moz-animation: fadeIn 500ms;
+    animation: fadeIn 500ms;
+}

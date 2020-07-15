@@ -21,3 +21,7 @@
 .h-threeFour{
     height: 75%;
 }
+
+.bg-linear-gradient{
+    background: linear-gradient(45deg, rgb(130, 82, 250) 0%, rgb(236, 162, 241) 99%, rgb(236, 162, 241) 100%);
+}

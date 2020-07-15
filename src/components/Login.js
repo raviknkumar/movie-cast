@@ -1,33 +1,44 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {randomString} from "../utils/CommonUtils";
-import { useHistory } from "react-router-dom";
 import auth from "./../utils/Auth"
+import {AuthContext} from "../contexts/AuthContext";
 
 const Login = (props) => {
-
-    const history = useHistory();
 
     const [room] = useState(randomString(9));
     const [username, setUserName] = useState('');
     const [joiningUserRoom, setJoiningUserRoom] = useState('');
+    const {setUserDetails} = useContext(AuthContext);
 
     function joinRoom(e) {
         e.preventDefault();
         console.log("Joining:");
-        
+
+        setUserDetails({
+            username,
+            room: joiningUserRoom
+        });
+
         auth.login(() => {
             props.history.push({
                 pathname:"/home",
                 search: `?username=${username}&room=${joiningUserRoom}`
             });
         });
+
     }
 
     function createRoom(e) {
+
         e.preventDefault();
         console.log("Creating:");
+
+        setUserDetails({
+            username,
+            room
+        });
         auth.login(() => {
             props.history.push({
                 pathname:"/home",
@@ -74,7 +85,7 @@ const Login = (props) => {
                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     type="submit">
                                     Create Room
-                                </button>    
+                                </button>
                             </div>
                         </form>
                         <p className="text-center text-gray-500 text-xs">

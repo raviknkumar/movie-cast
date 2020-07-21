@@ -1,8 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { findDOMNode } from "react-dom";
-
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import ReactPlayer from "react-player";
@@ -20,6 +17,12 @@ import Popover from "@material-ui/core/Popover";
 import screenful from "screenfull";
 import Controls from "./Controls";
 import { AuthContext } from "../../contexts/AuthContext"
+import Button from '@material-ui/core/Button';
+import SyncIcon from '@material-ui/icons/Sync';
+import {format} from '../../utils/CommonUtils';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import IconButton from '@material-ui/core/IconButton';
+
 
 const useStyles = makeStyles((theme) => ({
     playerWrapper: {
@@ -130,26 +133,11 @@ function ValueLabelComponent(props) {
     );
 }
 
-const format = (seconds) => {
-    if (isNaN(seconds)) {
-        return `00:00`;
-    }
-    const date = new Date(seconds * 1000);
-    const hh = date.getUTCHours();
-    const mm = date.getUTCMinutes();
-    const ss = date.getUTCSeconds().toString().padStart(2, "0");
-    if (hh) {
-        return `${hh}:${mm.toString().padStart(2, "0")}:${ss}`;
-    }
-    return `${mm}:${ss}`;
-};
-
 let count = 0;
 
 function VideoPlayer() {
     const classes = useStyles();
     const [showControls, setShowControls] = useState(false);
-    // const [count, setCount] = useState(0);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [timeDisplayFormat, setTimeDisplayFormat] = React.useState("normal");
     const [bookmarks, setBookmarks] = useState([]);
@@ -195,6 +183,14 @@ function VideoPlayer() {
         } else {
             console.log("Not host");
         }
+    };
+
+    const deleteBookmark = (index) => {
+        bookmarks.splice(index,1);
+    };
+
+    const sync = () => {
+        console.log("Sync Video");
     };
 
     const handleRewind = () => {
@@ -322,7 +318,7 @@ function VideoPlayer() {
             <div>
                 <section class="text-gray-700 body-font relative mt-2 ml-2">
                     <div class="flex sm:flex-no-wrap flex-wrap">
-                        <div class="lg:w-1/2 bg-gray-300 rounded-lg overflow-hidden flex items-end justify-start relative">
+                        <div className="lg:w-1/2 bg-gray-300 rounded-lg overflow-hidden flex items-end justify-start relative">
                             <div
                                 onMouseMove={handleMouseMove}
                                 onMouseLeave={hanldeMouseLeave}
@@ -378,9 +374,14 @@ function VideoPlayer() {
                             </div>
                         </div>
                         <div class="lg:w-1/2 px-6 mt-4 lg:mt-0">
-                            <button onClick={handlePlayPause}>
-                                Play
-                            </button>
+                            <Button variant="contained" color="primary" onClick={handlePlayPause}>
+                                {state.playing ? "Play" : "Pause"}
+                            </Button>
+
+                            <Button onClick={sync} variant="contained" className="bg-red-200">
+                                <SyncIcon/>
+                                Sync
+                            </Button>
                             <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm">EMAIL</h2>
                             <a class="text-indigo-500 leading-relaxed">example@email.com</a>
                             <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mt-4">PHONE</h2>
@@ -391,24 +392,26 @@ function VideoPlayer() {
             </div>
             <div className="w-full sm:w-1/2 ml-2 mt-2">
 
-
                 <Grid container style={{ marginTop: 20 }} spacing={3}>
                     {bookmarks.map((bookmark, index) => (
                         <Grid key={index} item>
                             <Paper
+                                align="center"
+                                className={"p-1"}
                                 onClick={() => {
                                     playerRef.current.seekTo(bookmark.time);
                                     controlsRef.current.style.visibility = "visible";
-
                                     setTimeout(() => {
                                         controlsRef.current.style.visibility = "hidden";
                                     }, 1000);
                                 }}
-                                elevation={3}
-                            >
+                                elevation={3}>
                                 <img crossOrigin="anonymous" src={bookmark.image} />
                                 <Typography variant="body2" align="center">
                                     bookmark at {bookmark.display}
+                                    <IconButton color="secondary" aria-label="delete Bookmark" onClick={deleteBookmark}>
+                                        <DeleteOutlinedIcon/>
+                                    </IconButton>
                                 </Typography>
                             </Paper>
                         </Grid>
@@ -416,9 +419,6 @@ function VideoPlayer() {
                 </Grid>
                 <canvas ref={canvasRef} />
             </div>
-            <div>
-                Controls
-        </div>
         </>
     );
 }

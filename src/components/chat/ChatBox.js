@@ -13,7 +13,7 @@ import SmileIcon from '../../assets/smile.svg'
 
 const ChatBox = (props) => {
 
-    const [inboxVisible, setInboxVisible] = useState(true);
+    const [inboxVisible, setInboxVisible] = useState(false);
     const [text, setText] = useState('');
     const [emojiPickerState, SetEmojiPicker] = useState(false);
 
@@ -71,8 +71,8 @@ const ChatBox = (props) => {
     function renderChatBox() {
         if (inboxVisible) {
             return (
-                <div className="flex flex-col absolute bottom-0 right-0 mr-2 mb-16 w-full sm:w-1/4 h-threeFour
-                shadow-2xl">
+                <div className="flex flex-col fixed bottom-0 right-0 mr-2 mb-16 w-full sm:w-1/4 h-threeFour
+                shadow-2xl z-10 bg-white">
                     <div className="flex-initial flex bg-linear-gradient p-4">
                         <div className={"flex items-center"}>
                             <Avatar displayText={getUserName().charAt(0)} width={8} height={8} background={'bg-indigo-400'} color={'text-white'}/>
@@ -124,7 +124,7 @@ const ChatBox = (props) => {
 
             {renderChatBox()}
 
-            <button className={"w-10 h-10 absolute bottom-0 right-0 m-4 p-2 rounded-full bg-linear-gradient"}
+            <button className={"w-10 h-10 fixed bottom-0 right-0 m-4 p-2 rounded-full bg-linear-gradient"}
                     onClick={toggleInbox}>
                 {
                     inboxVisible ?

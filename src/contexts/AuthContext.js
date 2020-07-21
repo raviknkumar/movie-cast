@@ -6,7 +6,8 @@ class AuthContextProvider extends React.Component{
 
     state = {
         isAuthenticated: true,
-        user: null
+        user: {username:'Test', room:'abc'},
+        host: true
     };
 
     toggleAuthenticated = () =>{
@@ -30,6 +31,22 @@ class AuthContextProvider extends React.Component{
         return this.state.user;
     };
 
+    isHost = () => {
+        return this.state.host;
+    };
+
+    setHost = (host) => {
+        console.log("Setting Host to " + host);
+        this.setState({ host});
+    };
+
+    toggleHost = () => {        
+        let host = this.state.host;
+        this.setState({host: !host});
+        console.log("Host set to " + !host);
+    }
+
+
     render() {
         return(
             <AuthContext.Provider value={{
@@ -37,7 +54,10 @@ class AuthContextProvider extends React.Component{
                 toggleAuthenticated: this.toggleAuthenticated,
                 setUserDetails: this.setUserDetails,
                 getUser: this.getUser,
-                getUserName: this.getUserName
+                getUserName: this.getUserName,
+                isHost: this.isHost,
+                setHost: this.setHost,
+                toggleHost: this.toggleHost
             }}>
                 {this.props.children}
             </AuthContext.Provider>

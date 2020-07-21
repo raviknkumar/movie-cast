@@ -19,8 +19,8 @@ class App extends Component {
         <AuthContextProvider>
           <Switch>
             <Route exact path="/" component={Login}/>
-            <ProtectedRoute exact path="/home" component={Home}/>
-            <ProtectedRoute exact path="/app" component={AppLayout}/>
+            <Route exact path="/home" component={Home}/>
+            <Route exact path="/app" component={AppLayout}/>
             <Route path="*" component={() => "404 NOT FOUND"}/>
           </Switch>
         </AuthContextProvider>
